@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LogLine — Kernel Auditável para IA</title>
-  <meta name="description" content="Cada ação com identidade, política e recibo criptográfico."/>
+  <title>LogLine — Responsabilidade não é opcional</title>
+  <meta name="description" content="Cada ação de IA com identidade, política e recibo criptográfico. Gere seu primeiro recibo em 30 segundos."/>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>summary{cursor:pointer}</style>
 </head>
 <body class="min-h-screen text-white bg-gradient-to-b from-slate-900 via-slate-950 to-black">
   <nav class="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
@@ -15,102 +16,136 @@
     </div>
     <div class="hidden md:flex items-center gap-6 text-sm text-white/80">
       <a href="#como" class="hover:text-white">Como funciona</a>
-      <a href="#narrativa" class="hover:text-white">Narrativa</a>
-      <a href="#api" class="hover:text-white">API</a>
-      <a href="#demo" class="hover:text-white">Demo</a>
+      <a href="#demo" class="hover:text-white">Experimente</a>
+      <a href="#glossario" class="hover:text-white">Glossário</a>
+      <a href="#faq" class="hover:text-white">FAQ</a>
     </div>
-    <div class="flex items-center gap-3">
-      <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white text-black hover:bg-white/90">Ver Demo</a>
-      <a href="https://github.com" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white/10 text-white hover:bg-white/20">GitHub</a>
-    </div>
+    <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white text-black hover:bg-white/90">Gerar meu primeiro recibo</a>
   </nav>
 
-  <header class="mx-auto max-w-7xl px-6 py-12 md:py-20">
+  <header class="mx-auto max-w-7xl px-6 pt-8 pb-12 md:pb-20">
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <div>
-        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">O kernel auditável para IA: <span class="text-white/80">toda ação com identidade, política e recibo criptográfico.</span></h1>
-        <p class="mt-5 text-white/70 md:text-lg">De “foi o algoritmo” para “eis o recibo”. O LogLine insere governança verificável no coração de qualquer aplicação de IA.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#api" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white text-black hover:bg-white/90">OpenAPI →</a>
-          <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white/10 hover:bg-white/20">Rodar demo</a>
-        </div>
-        <div class="mt-6 flex items-center gap-5 text-white/60 text-sm">
-          <div class="flex items-center gap-2">🛡️ Auditoria nativa</div>
-          <div class="flex items-center gap-2">🔐 Assinatura (modo demo: hash assinado desativado)</div>
-          <div class="flex items-center gap-2">🔁 Idempotência & CAS</div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">De “foi o algoritmo” para “eis o recibo”</h1>
+        <p class="mt-5 text-white/70 md:text-lg">O LogLine transforma cada ação de IA em uma escritura verificável: <em>Quem</em> agiu, <em>sob quais regras</em>, com <em>qual prova</em>.</p>
+        <ul class="mt-5 text-white/80 text-sm space-y-1">
+          <li>🪪 <strong>Identidade:</strong> <code>actor_id</code> do agente</li>
+          <li>📜 <strong>Governança:</strong> <code>policy_version</code></li>
+          <li>🔒 <strong>Prova:</strong> <code>hash</code> imutável do SPAN</li>
+        </ul>
+        <div class="mt-6 flex gap-3">
+          <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white text-black hover:bg-white/90">Gerar primeiro recibo →</a>
+          <a href="#como" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white/10 hover:bg-white/20">Como funciona</a>
         </div>
       </div>
       <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 shadow-sm">
-<pre class="text-xs md:text-sm p-4 rounded-xl bg-black/60 text-white overflow-auto"><code>// Clique em "Rodar demo" para gerar recibos
-// O demo roda 2 intents: um aprovado e um rejeitado por policy</code></pre>
+        <p class="text-white/80 text-sm">Quando você “executa” um Intent, o LogLine cria um <strong>Receipt</strong> (recibo) e registra um <strong>Span</strong> (linha do tempo) com o antes/depois da ação. Isso é auditoria nativa.</p>
+        <pre class="mt-4 text-xs md:text-sm p-4 rounded-xl bg-black/60 text-white overflow-auto"><code>Receipt:
+- status: committed | rejected
+- quem: actor_id
+- regras: policy_version
+- prova: hash(SPAN)
+        </code></pre>
       </div>
     </div>
   </header>
 
-  
-<section id="narrativa" class="mx-auto max-w-5xl px-6 py-12">
-  <h2 class="text-2xl font-bold mb-4">O Slogan</h2>
-  <blockquote class="border-l-4 border-white/20 pl-4 text-xl font-semibold">
-    “A IA está repetindo o erro do Facebook. Nós somos a correção de curso.”
-  </blockquote>
-
-  <h2 class="text-2xl font-bold mt-10 mb-4">A Narrativa</h2>
-  <div class="prose prose-invert max-w-none">
-    <p>Vinte anos atrás, as redes sociais foram construídas sobre uma brecha fundamental: lucrar com o conteúdo sem se responsabilizar por ele. Vimos no que deu.</p>
-    <p>Hoje, a indústria de IA está cometendo o mesmo erro, mas as consequências são muito maiores. Empresas estão implantando agentes autônomos que tomam decisões financeiras, operacionais e até médicas, mas operam em um vácuo de responsabilidade. O modelo de negócio é o mesmo do Facebook: <strong>lucrar com a execução, negar a responsabilidade pela consequência.</strong></p>
-    <p>Esta não é uma falha técnica. É uma escolha de arquitetura que prioriza o crescimento sobre a governança. É uma bomba-relógio.</p>
-    <p><strong>Nós somos a equipe de desarmamento.</strong></p>
-
-    <h3 class="text-xl font-semibold mt-8">Um Cartão Cidadão para o ChatGPT</h3>
-    <p>Toda execução precisa de um ID do modelo, uma versão da política e um ID do ator.</p>
-    <p>Apresentamos o <strong>LogLineKernel</strong>, um novo tipo de infraestrutura construída sobre um princípio inegociável: <strong>a responsabilidade não é opcional</strong>.</p>
-    <p>O LogLine é um <strong>kernel de execução auditável</strong> que se insere no coração de qualquer aplicação de IA. Ele força cada ação, cada decisão tomada por um LLM, a passar por um processo de registro irrefutável, como um cartório digital. O resultado não é apenas um <code>output</code>, mas uma <strong>escritura criptográfica (Receipt)</strong> que prova:</p>
-    <ul>
-      <li><strong>QUEM:</strong> A identidade do agente (<code>actor_id</code>).</li>
-      <li><strong>SOB QUAIS REGRAS:</strong> As políticas (<code>policy_version</code>) que o governavam.</li>
-      <li><strong>A PROVA:</strong> O <code>hash</code> imutável da execução.</li>
-    </ul>
-    <p>Não estamos pedindo para as empresas de IA serem mais éticas. Estamos lhes dando uma arquitetura que torna a <strong>irresponsabilidade computacionalmente impossível</strong>.</p>
-    <p>A era de dizer “foi o algoritmo” acabou. Com LogLine, o algoritmo agora tem nome, sobrenome e um registro de cada ato que já cometeu.</p>
-    <p>O Facebook levou 20 anos para ser confrontado com as consequências de sua arquitetura. A IA não terá esse tempo. A correção de curso começa agora.</p>
-  </div>
-</section>
-
-
-  <section id="como" class="mx-auto max-w-7xl px-6 py-12">
-    <h2 class="text-xl md:text-2xl font-bold mb-6">Como funciona</h2>
+  <section id="como" class="mx-auto max-w-7xl px-6 py-10">
+    <h2 class="text-xl md:text-2xl font-bold mb-6">Como funciona em 60 segundos</h2>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><strong>Intent</strong><p class="text-white/70 text-sm mt-2">Ação + parâmetros + metadados (policy_version, model_id, model_digest, actor_id...).</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><strong>Policies</strong><p class="text-white/70 text-sm mt-2">Regras determinísticas com códigos estáveis, evidências e versões.</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><strong>Receipt & Span</strong><p class="text-white/70 text-sm mt-2">Recibo com hash do SPAN e prova reprodutível (assinatura desativada no demo do browser).</p></div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="font-semibold">1) Intent</h3>
+        <p class="text-white/70 text-sm mt-2">Ação + parâmetros + metadados: <code>actor_id</code>, <code>policy_version</code>, <code>model_id</code>.</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="font-semibold">2) Policies</h3>
+        <p class="text-white/70 text-sm mt-2">Regras determinísticas: aprovam ou rejeitam a execução, com motivos.</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="font-semibold">3) Receipt & Span</h3>
+        <p class="text-white/70 text-sm mt-2">Você recebe um <strong>recibo</strong> e o ledger guarda o <strong>span</strong> com o hash imutável.</p>
+      </div>
     </div>
   </section>
 
-  <section id="api" class="mx-auto max-w-7xl px-6 py-12">
-    <h2 class="text-xl md:text-2xl font-bold mb-4">OpenAPI — Receipt API</h2>
-    <p class="text-white/70">Veja os arquivos em <code>/api/openapi.yaml</code> e <code>/api/openapi.json</code>.</p>
+  <section id="demo" class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-xl md:text-2xl font-bold mb-4">Experimente — gere um recibo agora</h2>
+    <p class="text-white/70 mb-6">Escolha um cenário, clique em “Executar” e veja um <em>Receipt</em> humano-legível (e o JSON completo, se quiser).</p>
+    <div class="flex flex-wrap gap-3 mb-6">
+      <button data-scn="transfer" class="scn-btn rounded-2xl px-4 py-2 text-sm font-semibold bg-white text-black">Transferência</button>
+      <button data-scn="email" class="scn-btn rounded-2xl px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20">Envio de E-mail</button>
+    </div>
+    <div id="form-area" class="grid md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 rounded-2xl border border-white/10 bg-white/5 p-6">
+        <div id="form-transfer">
+          <label class="block text-sm mb-2">Valor (até 80 é permitido pelas policies)</label>
+          <input id="amount" type="number" value="40" min="0" class="w-full rounded-xl bg-black/40 border border-white/10 px-3 py-2" />
+          <div class="mt-4 flex gap-3">
+            <button id="run-transfer" class="rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-black hover:bg-white/90">Executar</button>
+          </div>
+        </div>
+        <div id="form-email" class="hidden">
+          <label class="block text-sm mb-2">Para (e-mail)</label>
+          <input id="to" type="email" placeholder="user@example.com" class="w-full rounded-xl bg-black/40 border border-white/10 px-3 py-2" />
+          <label class="block text-sm mt-4 mb-2">Assunto</label>
+          <input id="subject" type="text" value="Hello" class="w-full rounded-xl bg-black/40 border border-white/10 px-3 py-2" />
+          <div class="mt-4 flex gap-3">
+            <button id="run-email" class="rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-black hover:bg-white/90">Executar</button>
+          </div>
+          <p class="text-white/50 text-xs mt-3">Dica: Deixe o campo “Para” vazio para ver a policy rejeitar.</p>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="font-semibold">Recibo (resumo humano)</h3>
+        <div id="receipt-human" class="mt-3 text-sm text-white/80 space-y-1">
+          <p>Sem execução ainda. Clique em <strong>Executar</strong>.</p>
+        </div>
+        <details class="mt-4">
+          <summary class="text-white/80 text-sm">Ver JSON completo</summary>
+          <pre id="receipt-json" class="mt-3 text-xs p-3 rounded-xl bg-black/60 overflow-auto">—</pre>
+        </details>
+      </div>
+    </div>
   </section>
 
-  <section id="demo" class="mx-auto max-w-7xl px-6 py-12">
-    <h2 class="text-xl md:text-2xl font-bold mb-4">Demo (browser)</h2>
-    <p class="text-white/70 mb-4">Gera dois recibos: um <em>committed</em> e um <em>rejected</em>. Mostra <code>hash</code>, <code>span_id</code>, <code>status</code> e campos-chave.</p>
-    <button id="runDemo" class="rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-black hover:bg-white/90">Rodar demo</button>
-    <div id="out" class="mt-6 rounded-xl bg-black/50 p-4 text-sm whitespace-pre-wrap"></div>
-    <p class="text-white/50 text-xs mt-3">Nota: Assinaturas Ed25519 exigem chaves; no demo de browser, usamos apenas o <code>hash</code> do SPAN.</p>
+  <section id="glossario" class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-xl md:text-2xl font-bold mb-4">Glossário rápido</h2>
+    <ul class="text-white/80 text-sm space-y-2">
+      <li><strong>Intent:</strong> Pedido de execução (ação + parâmetros + metadados).</li>
+      <li><strong>Policy:</strong> Regra determinística que aprova/rejeita.</li>
+      <li><strong>Receipt:</strong> Recibo da execução (status, quem, regras, prova).</li>
+      <li><strong>Span:</strong> Registro completo da execução (pré/pós-estado + hash).</li>
+      <li><strong>Hash:</strong> Impressão digital do Span. Se muda algo, o hash muda.</li>
+    </ul>
+  </section>
+
+  <section id="faq" class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-xl md:text-2xl font-bold mb-4">FAQ</h2>
+    <div class="space-y-4 text-white/80 text-sm">
+      <div>
+        <p class="font-semibold">Isso não é só “logar”?</p>
+        <p>Não. O LogLine produz uma escritura com <em>hash do SPAN</em> (e assinatura quando há chave), que pode ser verificada fora do sistema.</p>
+      </div>
+      <div>
+        <p class="font-semibold">Precisa de servidor?</p>
+        <p>Para a demo, não. Em produção, você pode assinar no servidor/worker para ter prova criptográfica forte.</p>
+      </div>
+    </div>
   </section>
 
   <footer class="mx-auto max-w-7xl px-6 py-10 text-white/50 text-sm">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
       <p>© <span id="y"></span> LogLine Foundation — “A responsabilidade não é opcional.”</p>
       <div class="flex gap-4">
-        <a href="#api" class="hover:text-white">OpenAPI</a>
-        <a href="#demo" class="hover:text-white">Demo</a>
-        <a href="#narrativa" class="hover:text-white">Narrativa</a>
+        <a href="#demo" class="hover:text-white">Experimente</a>
+        <a href="#glossario" class="hover:text-white">Glossário</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
       </div>
     </div>
   </footer>
+
   <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
-  <script src="dist/logline-kernel.browser.js"></script>
-  <script src="dist/demo.js" defer></script>
+  <script src="./dist/logline-kernel.browser.js"></script>
+  <script src="./dist/demo-guided.js" defer></script>
 </body>
 </html>
