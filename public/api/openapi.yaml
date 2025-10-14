@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: LogLine Kernel API
+  version: 1.0.0
+  description: >
+    API para execução auditável de intents por agentes de IA. Cada execução
+    gera um Receipt criptograficamente verificável e um Span completo no ledger.
+servers:
+  - url: https://api.logline.foundation
+    description: Produção
+  - url: https://sandbox.api.logline.foundation
+    description: Sandbox
+paths:
+  /execute:
+    post:
+      summary: Executa um intent através do kernel
+      operationId: executeIntent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Intent'
+      responses:
+        '200':
+          description: Receipt de execução
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+        '409':
+          description: Conflito de estado (CAS)
+        '422':
+          description: Parâmetros inválidos ou política rejeitada
+  /spans/{span_id}:
+    get:
+      summary: Recupera um Span completo
+      parameters:
+        - in: path
+          name: span_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Span encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Span'
+        '404':
+          description: Não encontrado
+  /receipts/{receipt_id}:
+    get:
+      summary: Recupera um Receipt e verifica assinatura
+      parameters:
+        - in: path
+          name: receipt_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Receipt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+        '404':
+          description: Não encontrado
+components:
+  schemas:
+    Intent:
+      type: object
+      required: [action, metadata]
+      properties:
+        action:
+          type: string
+          description: Nome da ação
+        params:
+          type: object
+          additionalProperties: true
+          default: {}
+        id:
+          type: string
+          description: Idempotency key do intent
+        timestamp:
+          type: string
+          format: date-time
+        metadata:
+          type: object
+          required: [policy_version, model_id, model_digest]
+          properties:
+            policy_version:
+              type: string
+            model_id:
+              type: string
+            model_digest:
+              type: string
+            expected_pre_state_hash:
+              type: string
+              description: CAS opcional
+            actor_id:
+              type: string
+            session_id:
+              type: string
+    PolicyResult:
+      type: object
+      required: [allow, code]
+      properties:
+        allow:
+          type: boolean
+        code:
+          type: string
+          enum: [OK, REQUIRED_TO, BALANCE_GT_ZERO, OUT_OF_HOURS, LIMIT_EXCEEDED, NO_HANDLER, INVALID_PARAMS, EXECUTION_ERROR, STATE_CONFLICT]
+        reason:
+          type: string
+        evidence:
+          type: object
+          additionalProperties: true
+        policy_id:
+          type: string
+        policy_version:
+          type: string
+    Receipt:
+      type: object
+      required: [status, intent, receipt_id, timestamp, span_id, hash]
+      properties:
+        status:
+          type: string
+          enum: [committed, rejected, error, rolled_back]
+        intent:
+          $ref: '#/components/schemas/Intent'
+        output:
+          type: object
+          additionalProperties: true
+        receipt_id:
+          type: string
+        reasons:
+          type: array
+          items:
+            type: string
+        timestamp:
+          type: string
+          format: date-time
+        span_id:
+          type: string
+        parent_span_id:
+          type: string
+        hash:
+          type: string
+    Span:
+      type: object
+      required: [span_id, span_version, kernel_version, intent, receipt, pre_state, post_state, policies_evaluated, execution_time_ms, timestamp]
+      properties:
+        span_id:
+          type: string
+        parent_span_id:
+          type: string
+        trace_id:
+          type: string
+        span_version:
+          type: string
+        kernel_version:
+          type: string
+        intent:
+          $ref: '#/components/schemas/Intent'
+        receipt:
+          $ref: '#/components/schemas/Receipt'
+        pre_state:
+          type: object
+          additionalProperties: true
+        post_state:
+          type: object
+          additionalProperties: true
+        pre_state_hash:
+          type: string
+        post_state_hash:
+          type: string
+        policies_evaluated:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolicyResult'
+        execution_time_ms:
+          type: number
+        timestamp:
+          type: string
+          format: date-time
+        actor_id:
+          type: string
+        session_id:
+          type: string
