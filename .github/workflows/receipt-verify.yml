@@ -1,0 +1,38 @@
+name: Verify Receipts
+on:
+  pull_request:
+    paths:
+      - 'receipts/**.json'
+      - 'spans/**.json'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install CLI (local) if present
+        run: |
+          if [ -f cli/package.json ]; then cd cli && npm ci || npm i; fi
+      - name: Verify receipts
+        run: |
+          set -e
+          if [ ! -f ".ci/pub.pem" ]; then echo "No pubkey at .ci/pub.pem"; exit 1; fi
+          FOUND=false
+          for f in $(git diff --name-only origin/${{ github.base_ref }}... | grep '^receipts/.*\.json$' || true); do
+            echo "Verificando $f"
+            node cli/bin/logline-verify.mjs --receipt "$f" --pubkey ".ci/pub.pem" || exit 2
+            FOUND=true
+          done
+          if [ "$FOUND" = false ]; then echo "Nenhum receipt alterado"; fi
+      - name: Verify spans (optional)
+        run: |
+          set -e
+          for s in $(git diff --name-only origin/${{ github.base_ref }}... | grep '^spans/.*\.json$' || true); do
+            echo "Validando span $s"
+            RECEIPT_PATH=$(echo "$s" | sed 's#^spans/#receipts/#; s#span#receipt#')
+            if [ -f "$RECEIPT_PATH" ]; then
+              node cli/bin/logline-verify.mjs --receipt "$RECEIPT_PATH" --pubkey ".ci/pub.pem" --span "$s" || exit 3
+            fi
+          done

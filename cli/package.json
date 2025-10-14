@@ -1,0 +1,9 @@
+{
+  "name": "logline-verifier",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "logline-verify": "bin/logline-verify.mjs"
+  },
+  "dependencies": {}
+}
