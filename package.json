@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@octokit/auth-app": "^8.1.1",
+    "@octokit/rest": "^22.0.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LogLine — Kernel Auditável para IA</title>
+  <meta name="description" content="Cada ação com identidade, política e recibo criptográfico."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen text-white bg-gradient-to-b from-slate-900 via-slate-950 to-black">
+  <nav class="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="h-8 w-8 rounded-xl bg-white/10 grid place-items-center">⚙️</div>
+      <span class="font-semibold tracking-tight">LogLine</span>
+    </div>
+    <div class="hidden md:flex items-center gap-6 text-sm text-white/80">
+      <a href="#como" class="hover:text-white">Como funciona</a>
+      <a href="#narrativa" class="hover:text-white">Narrativa</a>
+      <a href="#api" class="hover:text-white">API</a>
+      <a href="#demo" class="hover:text-white">Demo</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white text-black hover:bg-white/90">Ver Demo</a>
+      <a href="https://github.com" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white/10 text-white hover:bg-white/20">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="mx-auto max-w-7xl px-6 py-12 md:py-20">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">O kernel auditável para IA: <span class="text-white/80">toda ação com identidade, política e recibo criptográfico.</span></h1>
+        <p class="mt-5 text-white/70 md:text-lg">De “foi o algoritmo” para “eis o recibo”. O LogLine insere governança verificável no coração de qualquer aplicação de IA.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#api" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white text-black hover:bg-white/90">OpenAPI →</a>
+          <a href="#demo" class="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold shadow-sm bg-white/10 hover:bg-white/20">Rodar demo</a>
+        </div>
+        <div class="mt-6 flex items-center gap-5 text-white/60 text-sm">
+          <div class="flex items-center gap-2">🛡️ Auditoria nativa</div>
+          <div class="flex items-center gap-2">🔐 Assinatura (modo demo: hash assinado desativado)</div>
+          <div class="flex items-center gap-2">🔁 Idempotência & CAS</div>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 shadow-sm">
+<pre class="text-xs md:text-sm p-4 rounded-xl bg-black/60 text-white overflow-auto"><code>// Clique em "Rodar demo" para gerar recibos
+// O demo roda 2 intents: um aprovado e um rejeitado por policy</code></pre>
+      </div>
+    </div>
+  </header>
+
+  
+<section id="narrativa" class="mx-auto max-w-5xl px-6 py-12">
+  <h2 class="text-2xl font-bold mb-4">O Slogan</h2>
+  <blockquote class="border-l-4 border-white/20 pl-4 text-xl font-semibold">
+    “A IA está repetindo o erro do Facebook. Nós somos a correção de curso.”
+  </blockquote>
+
+  <h2 class="text-2xl font-bold mt-10 mb-4">A Narrativa</h2>
+  <div class="prose prose-invert max-w-none">
+    <p>Vinte anos atrás, as redes sociais foram construídas sobre uma brecha fundamental: lucrar com o conteúdo sem se responsabilizar por ele. Vimos no que deu.</p>
+    <p>Hoje, a indústria de IA está cometendo o mesmo erro, mas as consequências são muito maiores. Empresas estão implantando agentes autônomos que tomam decisões financeiras, operacionais e até médicas, mas operam em um vácuo de responsabilidade. O modelo de negócio é o mesmo do Facebook: <strong>lucrar com a execução, negar a responsabilidade pela consequência.</strong></p>
+    <p>Esta não é uma falha técnica. É uma escolha de arquitetura que prioriza o crescimento sobre a governança. É uma bomba-relógio.</p>
+    <p><strong>Nós somos a equipe de desarmamento.</strong></p>
+
+    <h3 class="text-xl font-semibold mt-8">Um Cartão Cidadão para o ChatGPT</h3>
+    <p>Toda execução precisa de um ID do modelo, uma versão da política e um ID do ator.</p>
+    <p>Apresentamos o <strong>LogLineKernel</strong>, um novo tipo de infraestrutura construída sobre um princípio inegociável: <strong>a responsabilidade não é opcional</strong>.</p>
+    <p>O LogLine é um <strong>kernel de execução auditável</strong> que se insere no coração de qualquer aplicação de IA. Ele força cada ação, cada decisão tomada por um LLM, a passar por um processo de registro irrefutável, como um cartório digital. O resultado não é apenas um <code>output</code>, mas uma <strong>escritura criptográfica (Receipt)</strong> que prova:</p>
+    <ul>
+      <li><strong>QUEM:</strong> A identidade do agente (<code>actor_id</code>).</li>
+      <li><strong>SOB QUAIS REGRAS:</strong> As políticas (<code>policy_version</code>) que o governavam.</li>
+      <li><strong>A PROVA:</strong> O <code>hash</code> imutável da execução.</li>
+    </ul>
+    <p>Não estamos pedindo para as empresas de IA serem mais éticas. Estamos lhes dando uma arquitetura que torna a <strong>irresponsabilidade computacionalmente impossível</strong>.</p>
+    <p>A era de dizer “foi o algoritmo” acabou. Com LogLine, o algoritmo agora tem nome, sobrenome e um registro de cada ato que já cometeu.</p>
+    <p>O Facebook levou 20 anos para ser confrontado com as consequências de sua arquitetura. A IA não terá esse tempo. A correção de curso começa agora.</p>
+  </div>
+</section>
+
+
+  <section id="como" class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-xl md:text-2xl font-bold mb-6">Como funciona</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><strong>Intent</strong><p class="text-white/70 text-sm mt-2">Ação + parâmetros + metadados (policy_version, model_id, model_digest, actor_id...).</p></div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><strong>Policies</strong><p class="text-white/70 text-sm mt-2">Regras determinísticas com códigos estáveis, evidências e versões.</p></div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6"><strong>Receipt & Span</strong><p class="text-white/70 text-sm mt-2">Recibo com hash do SPAN e prova reprodutível (assinatura desativada no demo do browser).</p></div>
+    </div>
+  </section>
+
+  <section id="api" class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-xl md:text-2xl font-bold mb-4">OpenAPI — Receipt API</h2>
+    <p class="text-white/70">Veja os arquivos em <code>/api/openapi.yaml</code> e <code>/api/openapi.json</code>.</p>
+  </section>
+
+  <section id="demo" class="mx-auto max-w-7xl px-6 py-12">
+    <h2 class="text-xl md:text-2xl font-bold mb-4">Demo (browser)</h2>
+    <p class="text-white/70 mb-4">Gera dois recibos: um <em>committed</em> e um <em>rejected</em>. Mostra <code>hash</code>, <code>span_id</code>, <code>status</code> e campos-chave.</p>
+    <button id="runDemo" class="rounded-2xl px-5 py-3 text-sm font-semibold bg-white text-black hover:bg-white/90">Rodar demo</button>
+    <div id="out" class="mt-6 rounded-xl bg-black/50 p-4 text-sm whitespace-pre-wrap"></div>
+    <p class="text-white/50 text-xs mt-3">Nota: Assinaturas Ed25519 exigem chaves; no demo de browser, usamos apenas o <code>hash</code> do SPAN.</p>
+  </section>
+
+  <footer class="mx-auto max-w-7xl px-6 py-10 text-white/50 text-sm">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <p>© <span id="y"></span> LogLine Foundation — “A responsabilidade não é opcional.”</p>
+      <div class="flex gap-4">
+        <a href="#api" class="hover:text-white">OpenAPI</a>
+        <a href="#demo" class="hover:text-white">Demo</a>
+        <a href="#narrativa" class="hover:text-white">Narrativa</a>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+  <script src="dist/logline-kernel.browser.js"></script>
+  <script src="dist/demo.js" defer></script>
+</body>
+</html>
